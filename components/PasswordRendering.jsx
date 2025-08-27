@@ -4,7 +4,6 @@ import React, { useState } from 'react'
 import { useContext } from 'react'
 import { contextState } from '../context/context'
 import { toast } from 'react-toastify'
-// import * as motion from "motion/react-client"
 import { motion } from "framer-motion";
 
 

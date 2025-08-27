@@ -8,7 +8,6 @@ import { contextState } from '../context/context';
 import { useForm } from "react-hook-form"
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-// import * as motion from "motion/react-client"
 import { motion } from "framer-motion";
 
 
