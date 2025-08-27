@@ -1,50 +1,54 @@
 import { NextResponse } from "next/server";
-import dotenv from "dotenv";
-import { MongoClient, ObjectId } from 'mongodb';
+import { MongoClient, ObjectId } from "mongodb";
 
-dotenv.config();
+const uri = process.env.MONGO_DB_URI;
+const dbName = process.env.MONGODB_DB;
 
-const url = process.env.MONGO_DB_URI;
-const client = new MongoClient(url);
-const dbName = 'passwordManagerDB';
+let client;
+let clientPromise;
+
+if (!global._mongoClientPromise) {
+  client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+  global._mongoClientPromise = client.connect();
+}
+clientPromise = global._mongoClientPromise;
 
 async function getCollection() {
-  await client.connect();
-  console.log('Connected successfully to MongoDB');
+  const client = await clientPromise;
   const db = client.db(dbName);
-  return db.collection('passwords');
+  return db.collection("passwords");
 }
 
-export async function GET(request) {
-  const collection = await getCollection();
-
-  // Fetch all documents
-  const findResult = await collection.find({}).toArray();
-
-  return NextResponse.json({ data: findResult });
+export async function GET() {
+  try {
+    const collection = await getCollection();
+    const data = await collection.find({}).toArray();
+    return NextResponse.json({ data });
+  } catch (error) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
 }
 
 export async function POST(request) {
+  try {
     const collection = await getCollection();
-
     const data = await request.json();
-    console.log(data)
-
-    collection.insertOne(data);
-
-    return NextResponse.json({status: 'data added...'});
+    const result = await collection.insertOne(data);
+    return NextResponse.json({ status: "data added", insertedId: result.insertedId });
+  } catch (error) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
 }
 
 export async function DELETE(request) {
-    const collection = await getCollection()
-
+  try {
+    const collection = await getCollection();
     const { searchParams } = new URL(request.url);
     const id = searchParams.get("id");
 
-    // console.log(id, searchParams)
-    // console.log(request.url)
-
     const result = await collection.deleteOne({ _id: new ObjectId(id) });
-
-    return NextResponse.json({ success: true, task : 'delete', deletedCount: result.deletedCount})
+    return NextResponse.json({ success: true, deletedCount: result.deletedCount });
+  } catch (error) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
 }
