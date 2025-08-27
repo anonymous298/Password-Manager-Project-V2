@@ -40,7 +40,6 @@ function App() {
 
           <Footer />
 
-
         </contextState.Provider>
       </div>
 
