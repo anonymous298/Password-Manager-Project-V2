@@ -5,6 +5,7 @@ import { useContext } from 'react'
 import { contextState } from '../context/context'
 import { toast } from 'react-toastify'
 import { motion } from "framer-motion";
+import TableSkeleton from './TableSkeleton'
 
 
 const PasswordRendering = ({setWebsiteURL, setUsername, setPassword, isloading}) => {
@@ -67,7 +68,8 @@ const PasswordRendering = ({setWebsiteURL, setUsername, setPassword, isloading})
 
         {passwordObj[0] ? '' : <h3>There is nothing to show</h3>}
 
-        {isloading && <h3>Loading Data...</h3>}
+        {/* {isloading && <h3>Loading Data...</h3>} */}
+        {isloading && <TableSkeleton />}
 
         {passwordObj[0] && 
             <div className='h-[250px] max-h-[300px] overflow-y-auto overflow-x-auto'>
