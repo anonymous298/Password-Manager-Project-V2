@@ -85,7 +85,7 @@ const PasswordManager = ({isloading}) => {
       setPasswordObj([data])
       submitData(data)
 
-    }
+    } 
 
     else {
       setPasswordObj([...passwordObj, data]);
@@ -116,8 +116,8 @@ const PasswordManager = ({isloading}) => {
           <form className='inputs flex flex-col gap-5' onSubmit={handleSubmit(onSubmit)}>
             <input {...register('websiteURL', {required : true})} type="text" value={websiteURL} onChange={handleWebsiteURLInput} placeholder='Enter Website URL' className='placeholder:text-gray-600 w-[100%] border-2 border-[#67C090] rounded-[20px] p-1 outline-none px-3 max-[500px]:text-[13px] bg-[#DCD0A8] text-black active:bg-[#DCD0A8]' />
 
-            <div className='flex gap-3 max-[500px]:gap-1'>
-              <input {...register('username', {required : true})} type="text" value={username} onChange={handleUsernameInput}  placeholder='Enter Username' className='placeholder:text-gray-600 w-[80%] border-2 border-[#67C090] rounded-[20px] p-1 outline-none  px-3 max-[500px]:text-[13px] bg-[#DCD0A8] active:bg-[#DCD0A8] text-black' />
+            <div className='flex gap-3 max-[500px]:gap-1 max-[500px]:flex-col max-[500px]:gap-y-5'>
+              <input {...register('username', {required : true})} type="text" value={username} onChange={handleUsernameInput}  placeholder='Enter Username' className='placeholder:text-gray-600 w-[80%] max-[500px]:w-[100%] border-2 border-[#67C090] rounded-[20px] p-1 outline-none  px-3 max-[500px]:text-[13px] bg-[#DCD0A8] active:bg-[#DCD0A8] text-black' />
 
               <div className=' border-2 border-[#67C090] rounded-[20px] p-1 flex justify-between px-3 bg-[#DCD0A8]'>
                 <input {...register('password', {required : true})} type={showPassword ? 'text ' : 'password'} value={password} onChange={handlePasswordInput}  placeholder='Enter Password' className=' placeholder:text-gray-600 outline-none w-[80%] px-2 max-[500px]:px-0.5 max-[500px]:text-[13px] active:bg-[#DCD0A8] text-black'/>
