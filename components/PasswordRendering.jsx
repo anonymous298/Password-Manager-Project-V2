@@ -4,7 +4,9 @@ import React, { useState } from 'react'
 import { useContext } from 'react'
 import { contextState } from '../context/context'
 import { toast } from 'react-toastify'
-import * as motion from "motion/react-client"
+// import * as motion from "motion/react-client"
+import { motion } from "framer-motion";
+
 
 const PasswordRendering = ({setWebsiteURL, setUsername, setPassword, isloading}) => {
     const {passwordObj, setPasswordObj} = useContext(contextState);
