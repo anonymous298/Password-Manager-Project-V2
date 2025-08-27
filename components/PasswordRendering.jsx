@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { useContext } from 'react'
 import { contextState } from '../context/context'
 import { toast } from 'react-toastify'
+import * as motion from "motion/react-client"
 
 const PasswordRendering = ({setWebsiteURL, setUsername, setPassword, isloading}) => {
     const {passwordObj, setPasswordObj} = useContext(contextState);
@@ -87,7 +88,15 @@ const PasswordRendering = ({setWebsiteURL, setUsername, setPassword, isloading})
                             // let encrVal = encryptPassword(val.password);
 
                             return (
-                                <tr className='bg-[#4A9782] text-center' key={idx}>
+                                <motion.tr
+                                    key={idx}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.2, ease: "easeOut" }}
+                                    // style={{ transformOrigin: "top" }}
+                                    className="bg-[#4A9782] text-center"
+                                >
+                                {/* // <tr className='bg-[#4A9782] text-center' key={idx}> */}
                                     <td className='p-2 '>
                                         <div className='flex justify-center items-center gap-x-2 cursor-pointer '>
 
@@ -138,7 +147,8 @@ const PasswordRendering = ({setWebsiteURL, setUsername, setPassword, isloading})
                                                 </svg>
                                         </button>
                                     </td>
-                                </tr>
+                                {/* </tr> */}
+                                </motion.tr>
                             )
                         })}
                     </tbody>
