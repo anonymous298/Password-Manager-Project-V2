@@ -8,6 +8,7 @@ import { contextState } from '@/context/context';
 import React from 'react';
 
 import { ToastContainer } from 'react-toastify';
+// import TableSkeleton from '@/components/TableSkeleton';
 // import { contextState } from '@/context/context';
 
 function App() {
@@ -39,7 +40,7 @@ function App() {
           <PasswordManager isloading={isloading} />
 
           <Footer />
-
+          {/* <TableSkeleton /> */}
         </contextState.Provider>
       </div>
 
