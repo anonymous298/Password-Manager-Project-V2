@@ -20,6 +20,18 @@ const PasswordManager = ({isloading}) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
+  // const [formValues, setFormValues] = useState(
+  //   {
+  //     websiteURL : '',
+  //     username : '',
+  //     password : ''
+  //   }
+  // )
+
+  // const handleChange = (e) => {
+  //   setFormValues({...formValues, [e.target.name] : e.target.value})
+  // }
+
   const {
     register,
     handleSubmit,
